@@ -1,0 +1,3 @@
+(function() {var implementors = {};
+implementors["dynamixel_driver"] = [{"text":"impl From&lt;(u8, u32)&gt; for SyncCommand","synthetic":false,"types":[]},{"text":"impl From&lt;(u8, bool)&gt; for SyncCommand","synthetic":false,"types":[]},{"text":"impl From&lt;(u8, f32)&gt; for SyncCommandFloat","synthetic":false,"types":[]}];
+if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
