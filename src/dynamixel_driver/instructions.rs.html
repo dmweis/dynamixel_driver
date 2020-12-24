@@ -377,13 +377,13 @@
 
 <span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Debug</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">StatusError</span> {
-    <span class="ident">instruction_error</span>: <span class="ident">bool</span>,
-    <span class="ident">overload_error</span>: <span class="ident">bool</span>,
-    <span class="ident">checksum_error</span>: <span class="ident">bool</span>,
-    <span class="ident">range_error</span>: <span class="ident">bool</span>,
-    <span class="ident">overheating_error</span>: <span class="ident">bool</span>,
-    <span class="ident">angle_limit_error</span>: <span class="ident">bool</span>,
-    <span class="ident">input_voltage_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">instruction_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">overload_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">checksum_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">range_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">overheating_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">angle_limit_error</span>: <span class="ident">bool</span>,
+    <span class="kw">pub</span> <span class="ident">input_voltage_error</span>: <span class="ident">bool</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">StatusError</span> {

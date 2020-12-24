@@ -340,12 +340,22 @@
 <span id="337">337</span>
 <span id="338">338</span>
 <span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
+<span id="342">342</span>
+<span id="343">343</span>
+<span id="344">344</span>
+<span id="345">345</span>
+<span id="346">346</span>
+<span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">mod</span> <span class="ident">instructions</span>;
 <span class="kw">mod</span> <span class="ident">serial_driver</span>;
 
 <span class="kw">use</span> <span class="ident">instructions</span>::{<span class="ident">Instruction</span>, <span class="ident">SyncCommand</span>, <span class="ident">SyncCommandFloat</span>};
-<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>};
+<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>, <span class="ident">SerialPortError</span>};
 
 <span class="kw">use</span> <span class="ident">anyhow</span>::<span class="prelude-ty">Result</span>;
 
@@ -394,39 +404,49 @@
         <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">Instruction</span>::<span class="ident">read_instruction</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="number">1</span>);
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">param</span>(<span class="number">0</span>).<span class="ident">unwrap</span>())
+        <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+        }
+        <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">as_u8</span>()<span class="question-mark">?</span>)
     }
 
     <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">Instruction</span>::<span class="ident">read_instruction</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="number">2</span>);
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="number">0_u16</span>;
-        <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">param</span>(<span class="number">0</span>).<span class="ident">unwrap</span>() <span class="kw">as</span> <span class="ident">u16</span>;
-        <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">param</span>(<span class="number">1</span>).<span class="ident">unwrap</span>() <span class="kw">as</span> <span class="ident">u16</span>;
-        <span class="ident">res</span> <span class="op">|</span><span class="op">=</span> <span class="ident">b</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
-        <span class="ident">res</span> <span class="op">|</span><span class="op">=</span> <span class="ident">a</span>;
-        <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
+        <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+        }
+        <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">as_u16</span>()<span class="question-mark">?</span>)
     }
 
     <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_u8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">Instruction</span>::<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="ident">value</span>);
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">msg</span>).<span class="ident">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+        }
         <span class="prelude-val">Ok</span>(())
     }
 
     <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">Instruction</span>::<span class="ident">write_u16</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="ident">value</span>);
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">msg</span>).<span class="ident">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+        }
         <span class="prelude-val">Ok</span>(())
     }
 
     <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">ping</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ping</span> <span class="op">=</span> <span class="ident">Instruction</span>::<span class="ident">ping</span>(<span class="ident">id</span>);
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">ping</span>).<span class="ident">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_status</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+        }
         <span class="prelude-val">Ok</span>(())
     }
 
