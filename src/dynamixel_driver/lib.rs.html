@@ -1,4 +1,6 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="shortcut icon" href="../../favicon.ico"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../dynamixel_driver/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><meta name="generator" content="rustdoc"><meta name="description" content="Source to the Rust file `src/lib.rs`."><meta name="keywords" content="rust, rustlang, rust-lang"><title>lib.rs.html -- source</title><link rel="stylesheet" type="text/css" href="../../normalize.css"><link rel="stylesheet" type="text/css" href="../../rustdoc.css" id="mainThemeStyle"><link rel="stylesheet" type="text/css" href="../../light.css"  id="themeStyle"><link rel="stylesheet" type="text/css" href="../../dark.css" disabled ><link rel="stylesheet" type="text/css" href="../../ayu.css" disabled ><script src="../../storage.js"></script><noscript><link rel="stylesheet" href="../../noscript.css"></noscript><link rel="icon" type="image/svg+xml" href="../../favicon.svg">
+<link rel="alternate icon" type="image/png" href="../../favicon-16x16.png">
+<link rel="alternate icon" type="image/png" href="../../favicon-32x32.png"><style type="text/css">#crate-search{background-image:url("../../down-arrow.svg");}</style></head><body class="rustdoc source"><!--[if lte IE 8]><div class="warning">This old browser is unsupported and will most likely display funky things.</div><![endif]--><nav class="sidebar"><div class="sidebar-menu">&#9776;</div><a href='../../dynamixel_driver/index.html'><div class='logo-container rust-logo'><img src='../../rust-logo.png' alt='logo'></div></a></nav><div class="theme-picker"><button id="theme-picker" aria-label="Pick another theme!"><img src="../../brush.svg" width="18" alt="Pick another theme!"></button><div id="theme-choices"></div></div><script src="../../theme.js"></script><nav class="sub"><form class="search-form"><div class="search-container"><div><select id="crate-search"><option value="All crates">All crates</option></select><input class="search-input" name="search" disabled autocomplete="off" spellcheck="false" placeholder="Click or press ‘S’ to search, ‘?’ for more options…" type="search"></div><span class="help-button">?</span>
                 <a id="settings-menu" href="../../settings.html"><img src="../../wheel.svg" width="18" alt="Change settings"></a></div></form></nav><section id="main" class="content"><pre class="line-numbers"><span id="1">  1</span>
 <span id="2">  2</span>
 <span id="3">  3</span>
@@ -335,6 +337,11 @@
 <span id="334">334</span>
 <span id="335">335</span>
 <span id="336">336</span>
+<span id="337">337</span>
+<span id="338">338</span>
+<span id="339">339</span>
+<span id="340">340</span>
+<span id="341">341</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">mod</span> <span class="ident">instructions</span>;
 <span class="kw">mod</span> <span class="ident">serial_driver</span>;
@@ -364,18 +371,18 @@
 <span class="kw">const</span> <span class="ident">PRESENT_VOLTAGE</span>: <span class="ident">u8</span> <span class="op">=</span> <span class="number">42</span>;
 
 <span class="kw">pub</span> <span class="kw">struct</span> <span class="ident">DynamixelDriver</span> {
-    <span class="ident">port</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FramedDriver</span><span class="op">&gt;</span>,
+    <span class="ident">port</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">FramedDriver</span><span class="op">&gt;</span>,
 }
 
 <span class="kw">impl</span> <span class="ident">DynamixelDriver</span> {
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">port_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DynamixelDriver</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">port_name</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DynamixelDriver</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">FramedSerialDriver</span>::<span class="ident">new</span>(<span class="ident">port_name</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">DynamixelDriver</span> {
             <span class="ident">port</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">driver</span>),
         })
     }
 
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_baud_rate</span>(<span class="ident">port</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">baud_rate</span>: <span class="ident">u32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DynamixelDriver</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">with_baud_rate</span>(<span class="ident">port</span>: <span class="kw-2">&amp;</span><span class="ident">str</span>, <span class="ident">baud_rate</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">DynamixelDriver</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">FramedSerialDriver</span>::<span class="ident">with_baud_rate</span>(<span class="ident">port</span>, <span class="ident">baud_rate</span>)<span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">DynamixelDriver</span> {
             <span class="ident">port</span>: <span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">driver</span>),
@@ -383,149 +390,149 @@
     }
 
     <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
-    <span class="kw">fn</span> <span class="ident">with_driver</span>(<span class="ident">connection</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="kw">dyn</span> <span class="ident">FramedDriver</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="ident">DynamixelDriver</span> {
+    <span class="kw">fn</span> <span class="ident">with_driver</span>(<span class="ident">connection</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">FramedDriver</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">DynamixelDriver</span> {
         <span class="ident">DynamixelDriver</span> { <span class="ident">port</span>: <span class="ident">connection</span> }
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_u8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_u8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">ReadInstruction</span>::<span class="ident">new</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="number">1</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">command</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">command</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">param</span>(<span class="number">0</span>).<span class="ident">unwrap</span>())
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">command</span> <span class="op">=</span> <span class="ident">ReadInstruction</span>::<span class="ident">new</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="number">2</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">command</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">command</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">res</span> <span class="op">=</span> <span class="number">0_u16</span>;
         <span class="kw">let</span> <span class="ident">a</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">param</span>(<span class="number">0</span>).<span class="ident">unwrap</span>() <span class="kw">as</span> <span class="ident">u16</span>;
         <span class="kw">let</span> <span class="ident">b</span> <span class="op">=</span> <span class="ident">response</span>.<span class="ident">param</span>(<span class="number">1</span>).<span class="ident">unwrap</span>() <span class="kw">as</span> <span class="ident">u16</span>;
-        <span class="ident">res</span> <span class="op">|=</span> <span class="ident">b</span> <span class="op">&lt;&lt;</span> <span class="number">8</span>;
-        <span class="ident">res</span> <span class="op">|=</span> <span class="ident">a</span>;
+        <span class="ident">res</span> <span class="op">|</span><span class="op">=</span> <span class="ident">b</span> <span class="op">&lt;</span><span class="op">&lt;</span> <span class="number">8</span>;
+        <span class="ident">res</span> <span class="op">|</span><span class="op">=</span> <span class="ident">a</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">res</span>)
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_u8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_u8</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">WriteInstruction</span>::<span class="ident">with_u8</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="ident">value</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">msg</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">msg</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u16</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_u16</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">addr</span>: <span class="ident">u8</span>, <span class="ident">value</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">msg</span> <span class="op">=</span> <span class="ident">WriteInstruction</span>::<span class="ident">with_u16</span>(<span class="ident">id</span>, <span class="ident">addr</span>, <span class="ident">value</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">msg</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">msg</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">_response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">ping</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">ping</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">ping</span> <span class="op">=</span> <span class="ident">Ping</span>::<span class="ident">new</span>(<span class="ident">id</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">ping</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="kw">let</span> <span class="ident">_status</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">ping</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="kw">let</span> <span class="ident">_status</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">new_id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">ID</span>, <span class="ident">new_id</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_id</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">new_id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">ID</span>, <span class="ident">new_id</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_torque</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">torque_enabled</span>: <span class="ident">bool</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_torque</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">torque_enabled</span>: <span class="ident">bool</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">if</span> <span class="ident">torque_enabled</span> {
-            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">TORQUE_ENABLED</span>, <span class="number">1</span>).<span class="kw">await</span><span class="question-mark">?</span>)
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">TORQUE_ENABLED</span>, <span class="number">1</span>).<span class="ident">await</span><span class="question-mark">?</span>)
         } <span class="kw">else</span> {
-            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">TORQUE_ENABLED</span>, <span class="number">0</span>).<span class="kw">await</span><span class="question-mark">?</span>)
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">TORQUE_ENABLED</span>, <span class="number">0</span>).<span class="ident">await</span><span class="question-mark">?</span>)
         }
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_temperature</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">read_u8</span>(<span class="ident">id</span>, <span class="ident">PRESENT_TEMPERATURE</span>).<span class="kw">await</span><span class="question-mark">?</span>)
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_temperature</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">read_u8</span>(<span class="ident">id</span>, <span class="ident">PRESENT_TEMPERATURE</span>).<span class="ident">await</span><span class="question-mark">?</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_voltage</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">read_u8</span>(<span class="ident">id</span>, <span class="ident">PRESENT_VOLTAGE</span>).<span class="kw">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">10.0</span>)
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_voltage</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
+        <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">read_u8</span>(<span class="ident">id</span>, <span class="ident">PRESENT_VOLTAGE</span>).<span class="ident">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span> <span class="op">/</span> <span class="number">10.0</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_position</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">PRESENT_POSITION</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_position</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">u16</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">PRESENT_POSITION</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">position</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_position_degrees</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">PRESENT_POSITION</span>).<span class="kw">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_position_degrees</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">PRESENT_POSITION</span>).<span class="ident">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span>;
         <span class="kw">let</span> <span class="ident">position</span> <span class="op">=</span> <span class="ident">position</span> <span class="op">/</span> <span class="number">3.41</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">position</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_position_rad</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">pos_rad</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_position_degrees</span>(<span class="ident">id</span>).<span class="kw">await</span><span class="question-mark">?</span>.<span class="ident">to_radians</span>();
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_position_rad</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">pos_rad</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_position_degrees</span>(<span class="ident">id</span>).<span class="ident">await</span><span class="question-mark">?</span>.<span class="ident">to_radians</span>();
         <span class="prelude-val">Ok</span>(<span class="ident">pos_rad</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_compliance_slope_both</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">compliance</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">CW_COMPLIANCE_SLOPE</span>, <span class="ident">compliance</span>).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">CWW_COMPLIANCE_SLOPE</span>, <span class="ident">compliance</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_compliance_slope_both</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">compliance</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">CW_COMPLIANCE_SLOPE</span>, <span class="ident">compliance</span>).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">write_u8</span>(<span class="ident">id</span>, <span class="ident">CWW_COMPLIANCE_SLOPE</span>, <span class="ident">compliance</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_compliance_both</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_compliance_both</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">compliance</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">compliance</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">compliance</span>
             .<span class="ident">into_iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> <span class="ident">command</span>.<span class="ident">into</span>())
             .<span class="ident">collect</span>();
         <span class="kw">let</span> <span class="ident">message_cw</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">CW_COMPLIANCE_SLOPE</span>, <span class="number">1</span>, <span class="ident">compliance</span>.<span class="ident">clone</span>());
         <span class="kw">let</span> <span class="ident">message_cww</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">CWW_COMPLIANCE_SLOPE</span>, <span class="number">1</span>, <span class="ident">compliance</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message_cw</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message_cww</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message_cw</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message_cww</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_torque</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">torque</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_torque</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span><span class="op">&gt;</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">torque</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">torque_commands</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span> <span class="op">=</span>
             <span class="ident">torque</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> <span class="ident">command</span>.<span class="ident">into</span>()).<span class="ident">collect</span>();
         <span class="kw">let</span> <span class="ident">torque_message</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">TORQUE_ENABLED</span>, <span class="number">1</span>, <span class="ident">torque_commands</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">torque_message</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">torque_message</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_position</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">u16</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">write_u16</span>(<span class="ident">id</span>, <span class="ident">GOAL_POSITION</span>, <span class="ident">pos</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_position</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">u16</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">write_u16</span>(<span class="ident">id</span>, <span class="ident">GOAL_POSITION</span>, <span class="ident">pos</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_position_degrees</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">f32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_position_degrees</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">goal_position</span> <span class="op">=</span> ((<span class="ident">pos</span> <span class="op">*</span> <span class="number">3.41</span>) <span class="kw">as</span> <span class="ident">i32</span>) <span class="kw">as</span> <span class="ident">u16</span>;
-        <span class="self">self</span>.<span class="ident">write_u16</span>(<span class="ident">id</span>, <span class="ident">GOAL_POSITION</span>, <span class="ident">goal_position</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">write_u16</span>(<span class="ident">id</span>, <span class="ident">GOAL_POSITION</span>, <span class="ident">goal_position</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">write_position_rad</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">f32</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
-        <span class="self">self</span>.<span class="ident">write_position_degrees</span>(<span class="ident">id</span>, <span class="ident">pos</span>.<span class="ident">to_degrees</span>()).<span class="kw">await</span><span class="question-mark">?</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_position_rad</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>, <span class="ident">pos</span>: <span class="ident">f32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+        <span class="self">self</span>.<span class="ident">write_position_degrees</span>(<span class="ident">id</span>, <span class="ident">pos</span>.<span class="ident">to_degrees</span>()).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">positions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">positions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">positions</span>
             .<span class="ident">into_iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> <span class="ident">command</span>.<span class="ident">into</span>())
             .<span class="ident">collect</span>();
         <span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">GOAL_POSITION</span>, <span class="number">2</span>, <span class="ident">positions</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position_degrees</span>(
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position_degrees</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">positions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommandFloat</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">positions_dyn_units</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">positions</span>
             .<span class="ident">into_iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> {
@@ -534,42 +541,42 @@
             })
             .<span class="ident">collect</span>();
         <span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">GOAL_POSITION</span>, <span class="number">2</span>, <span class="ident">positions_dyn_units</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position_rad</span>(
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_position_rad</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">positions</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommandFloat</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">positions_degrees</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommandFloat</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">positions</span>
             .<span class="ident">into_iter</span>()
             .<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> <span class="ident">SyncCommandFloat</span>::<span class="ident">new</span>(<span class="ident">command</span>.<span class="ident">id</span>(), <span class="ident">command</span>.<span class="ident">value</span>().<span class="ident">to_degrees</span>()))
             .<span class="ident">collect</span>();
-        <span class="self">self</span>.<span class="ident">sync_write_position_degrees</span>(<span class="ident">positions_degrees</span>).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">sync_write_position_degrees</span>(<span class="ident">positions_degrees</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">sync_write_moving_speed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;&gt;</span>(
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_moving_speed</span><span class="op">&lt;</span><span class="ident">T</span>: <span class="ident">Into</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span><span class="op">&gt;</span>(
         <span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>,
         <span class="ident">speeds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">T</span><span class="op">&gt;</span>,
-    ) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+    ) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">speeds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">SyncCommand</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">speeds</span>.<span class="ident">into_iter</span>().<span class="ident">map</span>(<span class="op">|</span><span class="ident">command</span><span class="op">|</span> <span class="ident">command</span>.<span class="ident">into</span>()).<span class="ident">collect</span>();
         <span class="kw">let</span> <span class="ident">message</span> <span class="op">=</span> <span class="ident">SyncWrite</span>::<span class="ident">new</span>(<span class="ident">MOVING_SPEED</span>, <span class="number">2</span>, <span class="ident">speeds</span>);
-        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="kw">await</span><span class="question-mark">?</span>;
+        <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">message</span>)).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="prelude-val">Ok</span>(())
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">read_max_torque</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
-        <span class="kw">let</span> <span class="ident">max_torque</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">MAX_TORQUE</span>).<span class="kw">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span>;
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">read_max_torque</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">id</span>: <span class="ident">u8</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">f32</span><span class="op">&gt;</span> {
+        <span class="kw">let</span> <span class="ident">max_torque</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">read_u16</span>(<span class="ident">id</span>, <span class="ident">MAX_TORQUE</span>).<span class="ident">await</span><span class="question-mark">?</span> <span class="kw">as</span> <span class="ident">f32</span>;
         <span class="kw">let</span> <span class="ident">max_torque_percentage</span> <span class="op">=</span> <span class="ident">max_torque</span> <span class="op">/</span> <span class="number">2013.0</span>;
         <span class="prelude-val">Ok</span>(<span class="ident">max_torque_percentage</span>)
     }
 
-    <span class="kw">pub</span> <span class="kw">async</span> <span class="kw">fn</span> <span class="ident">search_all</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;&gt;</span> {
+    <span class="kw">pub</span> <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">search_all</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">ids</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[];
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">1</span>..<span class="number">254</span> {
-            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ping</span>(<span class="ident">i</span>).<span class="kw">await</span>.<span class="ident">is_ok</span>() {
+            <span class="kw">if</span> <span class="self">self</span>.<span class="ident">ping</span>(<span class="ident">i</span>).<span class="ident">await</span>.<span class="ident">is_ok</span>() {
                 <span class="ident">ids</span>.<span class="ident">push</span>(<span class="ident">i</span>);
             }
         }
@@ -580,97 +587,102 @@
 <span class="attribute">#[<span class="ident">cfg</span>(<span class="ident">test</span>)]</span>
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">super</span>::<span class="kw-2">*</span>;
+    <span class="kw">use</span> <span class="ident">async_trait</span>::<span class="ident">async_trait</span>;
+    <span class="kw">use</span> <span class="ident">instructions</span>::<span class="ident">Instruction</span>;
+    <span class="kw">use</span> <span class="ident">serial_driver</span>::<span class="ident">Status</span>;
+    <span class="kw">use</span> <span class="ident">std</span>::<span class="ident">sync</span>::{<span class="ident">Arc</span>, <span class="ident">Mutex</span>};
 
-    <span class="comment">//     struct MockSerialPort {</span>
-    <span class="comment">//         written_data: Sender&lt;Vec&lt;u8&gt;&gt;,</span>
-    <span class="comment">//         mock_read_data: Vec&lt;Status&gt;</span>
-    <span class="comment">//     }</span>
+    <span class="kw">struct</span> <span class="ident">MockFramedDriver</span> {
+        <span class="ident">written_data</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>,
+        <span class="ident">mock_read_data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Status</span><span class="op">&gt;</span>,
+    }
 
-    <span class="comment">//     impl MockSerialPort {</span>
-    <span class="comment">//         fn new(mock_read_data: Vec&lt;Status&gt;, written_data: Sender&lt;Vec&lt;u8&gt;&gt;) -&gt; MockSerialPort {</span>
-    <span class="comment">//             MockSerialPort {</span>
-    <span class="comment">//                 written_data,</span>
-    <span class="comment">//                 mock_read_data,</span>
-    <span class="comment">//             }</span>
-    <span class="comment">//         }</span>
-    <span class="comment">//     }</span>
+    <span class="kw">impl</span> <span class="ident">MockFramedDriver</span> {
+        <span class="kw">fn</span> <span class="ident">new</span>(<span class="ident">mock_read_data</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Status</span><span class="op">&gt;</span>, <span class="ident">written_data</span>: <span class="ident">Arc</span><span class="op">&lt;</span><span class="ident">Mutex</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u8</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="self">Self</span> {
+            <span class="ident">MockFramedDriver</span> {
+                <span class="ident">written_data</span>,
+                <span class="ident">mock_read_data</span>,
+            }
+        }
+    }
 
-    <span class="comment">//     impl DynamixelConnection for MockSerialPort {</span>
-    <span class="comment">//         fn flush(&amp;mut self) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {</span>
-    <span class="comment">//             Ok(())</span>
-    <span class="comment">//         }</span>
+    <span class="attribute">#[<span class="ident">async_trait</span>]</span>
+    <span class="kw">impl</span> <span class="ident">FramedDriver</span> <span class="kw">for</span> <span class="ident">MockFramedDriver</span> {
+        <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">send</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>, <span class="ident">message</span>: <span class="ident">Box</span><span class="op">&lt;</span><span class="ident">dyn</span> <span class="ident">Instruction</span><span class="op">&gt;</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span>()<span class="op">&gt;</span> {
+            <span class="kw">let</span> <span class="ident">payload</span> <span class="op">=</span> <span class="ident">message</span>.<span class="ident">serialize</span>();
+            <span class="self">self</span>.<span class="ident">written_data</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>().<span class="ident">push</span>(<span class="ident">payload</span>);
+            <span class="prelude-val">Ok</span>(())
+        }
 
-    <span class="comment">//         fn write_message(&amp;mut self, message: &amp;dyn Instruction) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {</span>
-    <span class="comment">//             let payload = message.serialize();</span>
-    <span class="comment">//             self.written_data.send(payload).unwrap();</span>
-    <span class="comment">//             Ok(())</span>
-    <span class="comment">//         }</span>
+        <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">receive</span>(<span class="kw-2">&amp;</span><span class="kw-2">mut</span> <span class="self">self</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="prelude-ty">Result</span><span class="op">&lt;</span><span class="ident">Status</span><span class="op">&gt;</span> {
+            <span class="prelude-val">Ok</span>(<span class="self">self</span>.<span class="ident">mock_read_data</span>.<span class="ident">remove</span>(<span class="number">0</span>))
+        }
+    }
 
-    <span class="comment">//         fn read_message(&amp;mut self) -&gt; Result&lt;Status, Box&lt;dyn Error&gt;&gt; {</span>
-    <span class="comment">//             Ok(self.mock_read_data.remove(0))</span>
-    <span class="comment">//         }</span>
-    <span class="comment">//     }</span>
+    <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_compliance_writes</span>() {
+        <span class="kw">let</span> <span class="ident">writing_buffer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[]));
+        <span class="kw">let</span> <span class="ident">mock_port</span> <span class="op">=</span> <span class="ident">MockFramedDriver</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[], <span class="ident">writing_buffer</span>.<span class="ident">clone</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">DynamixelDriver</span>::<span class="ident">with_driver</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">mock_port</span>));
+        <span class="kw">let</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[(<span class="number">1_u8</span>, <span class="number">0_u32</span>), (<span class="number">2</span>, <span class="number">0</span>), (<span class="number">3</span>, <span class="number">0</span>), (<span class="number">4</span>, <span class="number">0</span>)];
+        <span class="ident">driver</span>.<span class="ident">sync_write_compliance_both</span>(<span class="ident">commands</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
-    <span class="comment">//     #[test]</span>
-    <span class="comment">//     fn sync_write_compliance_writes() {</span>
-    <span class="comment">//         let (tx, rx) = channel();</span>
-    <span class="comment">//         let mock_port = MockSerialPort::new(vec![], tx);</span>
-    <span class="comment">//         let mut driver = DynamixelDriver::new_with_connection(Box::new(mock_port));</span>
-    <span class="comment">//         let commands = vec![</span>
-    <span class="comment">//             (1_u8, 0_u32),</span>
-    <span class="comment">//             (2, 0),</span>
-    <span class="comment">//             (3, 0),</span>
-    <span class="comment">//             (4, 0),</span>
-    <span class="comment">//         ];</span>
-    <span class="comment">//         driver.sync_write_compliance_both(commands).unwrap();</span>
-    <span class="comment">//         assert_eq!(rx.try_recv().unwrap(), vec![255, 255, 254, 12, 131, 28, 1, 1, 0, 2, 0, 3, 0, 4, 0, 75]);</span>
-    <span class="comment">//         assert_eq!(rx.try_recv().unwrap(), vec![255, 255, 254, 12, 131, 29, 1, 1, 0, 2, 0, 3, 0, 4, 0, 74]);</span>
-    <span class="comment">//         assert!(rx.try_recv().is_err());</span>
-    <span class="comment">//     }</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writing_buffer_guard</span> <span class="op">=</span> <span class="ident">writing_buffer</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">writing_buffer_guard</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="number">255</span>, <span class="number">255</span>, <span class="number">254</span>, <span class="number">12</span>, <span class="number">131</span>, <span class="number">28</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">75</span>]
+        );
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">writing_buffer_guard</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="number">255</span>, <span class="number">255</span>, <span class="number">254</span>, <span class="number">12</span>, <span class="number">131</span>, <span class="number">29</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">74</span>]
+        );
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">writing_buffer_guard</span>.<span class="ident">is_empty</span>());
+    }
 
-    <span class="comment">//     #[test]</span>
-    <span class="comment">//     fn sync_write_positions_writes() {</span>
-    <span class="comment">//         let (tx, rx) = channel();</span>
-    <span class="comment">//         let mock_port = MockSerialPort::new(vec![], tx);</span>
-    <span class="comment">//         let mut driver = DynamixelDriver::new_with_connection(Box::new(mock_port));</span>
-    <span class="comment">//         let commands = vec![</span>
-    <span class="comment">//             (1_u8, 0_u32),</span>
-    <span class="comment">//             (2, 0),</span>
-    <span class="comment">//             (3, 0),</span>
-    <span class="comment">//             (4, 0),</span>
-    <span class="comment">//         ];</span>
-    <span class="comment">//         driver.sync_write_position(commands).unwrap();</span>
-    <span class="comment">//         assert_eq!(rx.try_recv().unwrap(), vec![255, 255, 254, 16, 131, 30, 2, 1, 0, 0, 2, 0, 0, 3, 0, 0, 4, 0, 0, 68]);</span>
-    <span class="comment">//         assert!(rx.try_recv().is_err());</span>
-    <span class="comment">//     }</span>
+    <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_positions_writes</span>() {
+        <span class="kw">let</span> <span class="ident">writing_buffer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[]));
+        <span class="kw">let</span> <span class="ident">mock_port</span> <span class="op">=</span> <span class="ident">MockFramedDriver</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[], <span class="ident">writing_buffer</span>.<span class="ident">clone</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">DynamixelDriver</span>::<span class="ident">with_driver</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">mock_port</span>));
+        <span class="kw">let</span> <span class="ident">commands</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[(<span class="number">1_u8</span>, <span class="number">0_u32</span>), (<span class="number">2</span>, <span class="number">0</span>), (<span class="number">3</span>, <span class="number">0</span>), (<span class="number">4</span>, <span class="number">0</span>)];
+        <span class="ident">driver</span>.<span class="ident">sync_write_position</span>(<span class="ident">commands</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
 
-    <span class="comment">//     #[test]</span>
-    <span class="comment">//     fn write_positions_writes() {</span>
-    <span class="comment">//         let (tx, rx) = channel();</span>
-    <span class="comment">//         let mock_port = MockSerialPort::new(vec![</span>
-    <span class="comment">//             Status::new(1, vec![]),</span>
-    <span class="comment">//         ], tx);</span>
-    <span class="comment">//         let mut driver = DynamixelDriver::new_with_connection(Box::new(mock_port));</span>
-    <span class="comment">//         driver.write_position(1, 150).unwrap();</span>
-    <span class="comment">//         assert_eq!(rx.try_recv().unwrap(), vec![255, 255, 1, 5, 3, 30, 150, 0, 66]);</span>
-    <span class="comment">//         assert!(rx.try_recv().is_err());</span>
-    <span class="comment">//     }</span>
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writing_buffer_guard</span> <span class="op">=</span> <span class="ident">writing_buffer</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">writing_buffer_guard</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="number">255</span>, <span class="number">255</span>, <span class="number">254</span>, <span class="number">16</span>, <span class="number">131</span>, <span class="number">30</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">4</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">68</span>]
+        );
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">writing_buffer_guard</span>.<span class="ident">is_empty</span>());
+    }
 
-    <span class="comment">//     #[test]</span>
-    <span class="comment">//     fn sync_write_torque_writes() {</span>
-    <span class="comment">//         let (tx, rx) = channel();</span>
-    <span class="comment">//         let mock_port = MockSerialPort::new(vec![], tx);</span>
-    <span class="comment">//         let mut driver = DynamixelDriver::new_with_connection(Box::new(mock_port));</span>
-    <span class="comment">//         let input = vec![</span>
-    <span class="comment">//             (1, 0),</span>
-    <span class="comment">//             (2, 0),</span>
-    <span class="comment">//             (3, 1),</span>
-    <span class="comment">//             (4, 1),</span>
-    <span class="comment">//         ];</span>
-    <span class="comment">//         driver.sync_write_torque(input).unwrap();</span>
-    <span class="comment">//         assert_eq!(rx.try_recv().unwrap(), vec![255, 255, 254, 12, 131, 24, 1, 1, 0, 2, 0, 3, 1, 4, 1, 77]);</span>
-    <span class="comment">//         assert!(rx.try_recv().is_err());</span>
-    <span class="comment">//     }</span>
+    <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">write_positions_writes</span>() {
+        <span class="kw">let</span> <span class="ident">writing_buffer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[]));
+        <span class="kw">let</span> <span class="ident">mock_port</span> <span class="op">=</span> <span class="ident">MockFramedDriver</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Status</span>::<span class="ident">new</span>(<span class="number">1</span>, <span class="macro">vec</span><span class="macro">!</span>[])], <span class="ident">writing_buffer</span>.<span class="ident">clone</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">DynamixelDriver</span>::<span class="ident">with_driver</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">mock_port</span>));
+        <span class="ident">driver</span>.<span class="ident">write_position</span>(<span class="number">1</span>, <span class="number">150</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writing_buffer_guard</span> <span class="op">=</span> <span class="ident">writing_buffer</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">writing_buffer_guard</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="number">255</span>, <span class="number">255</span>, <span class="number">1</span>, <span class="number">5</span>, <span class="number">3</span>, <span class="number">30</span>, <span class="number">150</span>, <span class="number">0</span>, <span class="number">66</span>]
+        );
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">writing_buffer_guard</span>.<span class="ident">is_empty</span>());
+    }
+
+    <span class="attribute">#[<span class="ident">tokio</span>::<span class="ident">test</span>]</span>
+    <span class="ident">async</span> <span class="kw">fn</span> <span class="ident">sync_write_torque_writes</span>() {
+        <span class="kw">let</span> <span class="ident">writing_buffer</span> <span class="op">=</span> <span class="ident">Arc</span>::<span class="ident">new</span>(<span class="ident">Mutex</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[]));
+        <span class="kw">let</span> <span class="ident">mock_port</span> <span class="op">=</span> <span class="ident">MockFramedDriver</span>::<span class="ident">new</span>(<span class="macro">vec</span><span class="macro">!</span>[<span class="ident">Status</span>::<span class="ident">new</span>(<span class="number">1</span>, <span class="macro">vec</span><span class="macro">!</span>[])], <span class="ident">writing_buffer</span>.<span class="ident">clone</span>());
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">driver</span> <span class="op">=</span> <span class="ident">DynamixelDriver</span>::<span class="ident">with_driver</span>(<span class="ident">Box</span>::<span class="ident">new</span>(<span class="ident">mock_port</span>));
+        <span class="kw">let</span> <span class="ident">input</span> <span class="op">=</span> <span class="macro">vec</span><span class="macro">!</span>[(<span class="number">1</span>, <span class="number">0</span>), (<span class="number">2</span>, <span class="number">0</span>), (<span class="number">3</span>, <span class="number">1</span>), (<span class="number">4</span>, <span class="number">1</span>)];
+        <span class="ident">driver</span>.<span class="ident">sync_write_torque</span>(<span class="ident">input</span>).<span class="ident">await</span>.<span class="ident">unwrap</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">writing_buffer_guard</span> <span class="op">=</span> <span class="ident">writing_buffer</span>.<span class="ident">lock</span>().<span class="ident">unwrap</span>();
+        <span class="macro">assert_eq</span><span class="macro">!</span>(
+            <span class="ident">writing_buffer_guard</span>.<span class="ident">remove</span>(<span class="number">0</span>),
+            <span class="macro">vec</span><span class="macro">!</span>[<span class="number">255</span>, <span class="number">255</span>, <span class="number">254</span>, <span class="number">12</span>, <span class="number">131</span>, <span class="number">24</span>, <span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>, <span class="number">2</span>, <span class="number">0</span>, <span class="number">3</span>, <span class="number">1</span>, <span class="number">4</span>, <span class="number">1</span>, <span class="number">77</span>]
+        );
+        <span class="macro">assert</span><span class="macro">!</span>(<span class="ident">writing_buffer_guard</span>.<span class="ident">is_empty</span>());
+    }
 }
 </pre></div>
 </section><section id="search" class="content hidden"></section><section class="footer"></section><script>window.rootPath = "../../";window.currentCrate = "dynamixel_driver";</script><script src="../../main.js"></script><script src="../../source-script.js"></script><script src="../../source-files.js"></script><script defer src="../../search-index.js"></script></body></html>
