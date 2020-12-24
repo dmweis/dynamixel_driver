@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["calc_checksum",""]],"struct":[["Ping",""],["ReadInstruction",""],["StatusError",""],["SyncCommand",""],["SyncCommandFloat",""],["SyncWrite",""],["WriteInstruction",""]],"trait":[["Instruction",""]]});
+initSidebarItems({"fn":[["calc_checksum",""]],"struct":[["Instruction",""],["StatusError",""],["SyncCommand",""],["SyncCommandFloat",""]]});
