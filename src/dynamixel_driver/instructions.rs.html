@@ -375,7 +375,7 @@
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">use</span> <span class="kw">crate</span>::<span class="ident">serial_driver</span>::<span class="ident">SerialPortError</span>;
 
-<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Debug</span>)]</span>
+<span class="attribute">#[<span class="ident">derive</span>(<span class="ident">PartialEq</span>, <span class="ident">Debug</span>, <span class="ident">Eq</span>)]</span>
 <span class="kw">pub</span>(<span class="kw">crate</span>) <span class="kw">struct</span> <span class="ident">StatusError</span> {
     <span class="kw">pub</span> <span class="ident">instruction_error</span>: <span class="ident">bool</span>,
     <span class="kw">pub</span> <span class="ident">overload_error</span>: <span class="ident">bool</span>,
