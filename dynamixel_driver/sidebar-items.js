@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["CWW_COMPLIANCE_SLOPE",""],["CW_COMPLIANCE_SLOPE",""],["GOAL_POSITION",""],["ID",""],["MAX_TORQUE",""],["MOVING_SPEED",""],["PRESENT_POSITION",""],["PRESENT_TEMPERATURE",""],["PRESENT_VOLTAGE",""],["TORQUE_ENABLED",""]],"enum":[["DynamixelDriverError",""]],"mod":[["instructions",""],["serial_driver",""]],"struct":[["DynamixelDriver",""],["SyncCommand",""],["SyncCommandFloat",""]]});
+initSidebarItems({"enum":[["DynamixelDriverError",""]],"struct":[["DynamixelDriver",""],["SyncCommand",""],["SyncCommandFloat",""]]});

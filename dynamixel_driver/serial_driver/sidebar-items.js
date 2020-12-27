@@ -1,1 +1,0 @@
-initSidebarItems({"constant":[["TIMEOUT",""]],"struct":[["DynamixelProtocol",""],["FramedSerialDriver",""],["Status",""]],"trait":[["FramedDriver",""]]});
