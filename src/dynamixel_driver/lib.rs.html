@@ -348,12 +348,16 @@
 <span id="345">345</span>
 <span id="346">346</span>
 <span id="347">347</span>
+<span id="348">348</span>
+<span id="349">349</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">mod</span> <span class="ident">instructions</span>;
 <span class="kw">mod</span> <span class="ident">serial_driver</span>;
 
-<span class="kw">use</span> <span class="ident">instructions</span>::{<span class="ident">Instruction</span>, <span class="ident">SyncCommand</span>, <span class="ident">SyncCommandFloat</span>};
-<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">DynamixelDriverError</span>, <span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">instructions</span>::{<span class="ident">Instruction</span>, <span class="prelude-ty">Result</span>};
+<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>};
+
+<span class="kw">pub</span> <span class="kw">use</span> <span class="ident">instructions</span>::{<span class="ident">DynamixelDriverError</span>, <span class="ident">SyncCommand</span>, <span class="ident">SyncCommandFloat</span>};
 
 <span class="comment">// EEPROM table</span>
 <span class="comment">// const MODEL_NUMBER: u8 = 0;</span>

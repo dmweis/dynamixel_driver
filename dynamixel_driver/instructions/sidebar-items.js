@@ -1,1 +1,1 @@
-initSidebarItems({"fn":[["calc_checksum",""]],"struct":[["Instruction",""],["StatusError",""],["SyncCommand",""],["SyncCommandFloat",""]]});
+initSidebarItems({"enum":[["DynamixelDriverError",""]],"fn":[["calc_checksum",""]],"struct":[["Instruction",""],["StatusError",""],["SyncCommand",""],["SyncCommandFloat",""]],"type":[["Result",""]]});
