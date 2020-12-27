@@ -348,16 +348,12 @@
 <span id="345">345</span>
 <span id="346">346</span>
 <span id="347">347</span>
-<span id="348">348</span>
-<span id="349">349</span>
 </pre><div class="example-wrap"><pre class="rust ">
 <span class="kw">mod</span> <span class="ident">instructions</span>;
 <span class="kw">mod</span> <span class="ident">serial_driver</span>;
 
 <span class="kw">use</span> <span class="ident">instructions</span>::{<span class="ident">Instruction</span>, <span class="ident">SyncCommand</span>, <span class="ident">SyncCommandFloat</span>};
-<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>, <span class="ident">SerialPortError</span>};
-
-<span class="kw">use</span> <span class="ident">anyhow</span>::<span class="prelude-ty">Result</span>;
+<span class="kw">use</span> <span class="ident">serial_driver</span>::{<span class="ident">DynamixelDriverError</span>, <span class="ident">FramedDriver</span>, <span class="ident">FramedSerialDriver</span>, <span class="prelude-ty">Result</span>};
 
 <span class="comment">// EEPROM table</span>
 <span class="comment">// const MODEL_NUMBER: u8 = 0;</span>
@@ -405,7 +401,7 @@
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DynamixelDriverError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()));
         }
         <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">as_u8</span>()<span class="question-mark">?</span>)
     }
@@ -415,7 +411,7 @@
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">command</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DynamixelDriverError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()));
         }
         <span class="prelude-val">Ok</span>(<span class="ident">response</span>.<span class="ident">as_u16</span>()<span class="question-mark">?</span>)
     }
@@ -425,7 +421,7 @@
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">msg</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DynamixelDriverError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()));
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -435,7 +431,7 @@
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">msg</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DynamixelDriverError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()));
         }
         <span class="prelude-val">Ok</span>(())
     }
@@ -445,7 +441,7 @@
         <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">send</span>(<span class="ident">ping</span>).<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">let</span> <span class="ident">response</span> <span class="op">=</span> <span class="self">self</span>.<span class="ident">port</span>.<span class="ident">receive</span>().<span class="ident">await</span><span class="question-mark">?</span>;
         <span class="kw">if</span> <span class="ident">id</span> <span class="op">!</span><span class="op">=</span> <span class="ident">response</span>.<span class="ident">id</span>() {
-            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">SerialPortError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()).<span class="ident">into</span>());
+            <span class="kw">return</span> <span class="prelude-val">Err</span>(<span class="ident">DynamixelDriverError</span>::<span class="ident">IdMismatchError</span>(<span class="ident">id</span>, <span class="ident">response</span>.<span class="ident">id</span>()));
         }
         <span class="prelude-val">Ok</span>(())
     }

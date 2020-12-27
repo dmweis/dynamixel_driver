@@ -1,1 +1,1 @@
-initSidebarItems({"constant":[["TIMEOUT",""]],"enum":[["SerialPortError",""]],"struct":[["DynamixelProtocol",""],["FramedSerialDriver",""],["Status",""]],"trait":[["FramedDriver",""]]});
+initSidebarItems({"constant":[["TIMEOUT",""]],"enum":[["DynamixelDriverError",""]],"struct":[["DynamixelProtocol",""],["FramedSerialDriver",""],["Status",""]],"trait":[["FramedDriver",""]],"type":[["Result",""]]});
