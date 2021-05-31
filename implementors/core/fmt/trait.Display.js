@@ -1,3 +1,3 @@
 (function() {var implementors = {};
-implementors["dynamixel_driver"] = [{"text":"impl Display for DynamixelDriverError","synthetic":false,"types":[]}];
+implementors["dynamixel_driver"] = [{"text":"impl <a class=\"trait\" href=\"https://doc.rust-lang.org/nightly/core/fmt/trait.Display.html\" title=\"trait core::fmt::Display\">Display</a> for <a class=\"enum\" href=\"dynamixel_driver/enum.DynamixelDriverError.html\" title=\"enum dynamixel_driver::DynamixelDriverError\">DynamixelDriverError</a>","synthetic":false,"types":["dynamixel_driver::instructions::DynamixelDriverError"]}];
 if (window.register_implementors) {window.register_implementors(implementors);} else {window.pending_implementors = implementors;}})()
